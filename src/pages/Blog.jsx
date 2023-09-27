@@ -1,25 +1,40 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import {Link} from 'react-router-dom'
 
 const Blog = () => {
-    const [counter, setCounter] = useState(0)
-    console.log('salut hors useEffect')
+    const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        console.log('initialisation')
-    }, [])
+        const getPost = async() => {
+            //chercher les données sur l'api
+            const posts = await fetch('https://jsonplaceholder.typicode.com/posts')
+            //parser les données
+            const postsJson = await posts.json()
+            //on affiche pour vérifier dans la console
+            console.log(postsJson)
+            //mettre le resultat dans une variable d'etat
+            setPosts(postsJson)
 
-    useEffect(() => {
-        console.log('mise à jour de la variable')
-    }, [counter])
+            // fetch('https://jsonplaceholder.typicode.com/posts')
+            // .then(response => response.json())
+            // .then((data) => {
+            //     console.log(data)
+            // })
+        }
 
- 
-    useEffect(() => {
-        return () => console.log('je suis mort')
+        getPost()
     }, [])
 
     return (
         <div>
-            <button onClick={() => setCounter(counter + 1)}>counter {counter}</button>
+            {
+                posts.length > 0 &&
+                    posts.map((post) => (
+                        <p key={post.id}>{post.title} <Link to={`/article/${post.id}`}>Voir article</Link></p>
+                    ))
+            }
         </div>
     );
 };

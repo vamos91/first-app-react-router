@@ -1,25 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import loadingPost from '../services/api/posts'
+import {Link} from 'react-router-dom'
+import {Button} from 'flowbite-react'
 
 const Articles = () => {
-    //recup l'id de l'article
     const {id} = useParams()
     const [article, setArticle] = useState({})
 
     useEffect(() => {
         const getArticle = async () => {
-            //faire une requete HTTP vers l'api
-            const article = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-            const articleJson = await article.json()
-            console.log(articleJson)
-            setArticle(articleJson)
+            try {
+                const articleJson = await loadingPost(id)
+                setArticle(articleJson)
+            } catch (error) {
+                console.log(error)
+            }
+            
         }
         getArticle()
     }, [])
     
-    //l'afficher dans le JSX
     return (
         <div>
+            <Button><Link to="/">Back to Blog</Link></Button>
             <h1>{article.title}</h1>   
             <p>{article.body}</p> 
         </div>

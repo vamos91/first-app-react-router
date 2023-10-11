@@ -1,0 +1,11 @@
+describe('check navbar', () => {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000')
+    })
+
+    it('Check dark mode', () => {
+        cy.get('[data-cy="button"]').should('exist').should("have.text", 'dark')
+        cy.get('[data-cy="button"]').click()
+        cy.get('[data-cy="button"]').should('exist').should("have.text", 'light')
+    })
+})

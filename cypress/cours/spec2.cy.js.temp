@@ -1,0 +1,13 @@
+describe('Check signup dans todo', () => {
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/signup')
+    })
+    it("Shouldn't display type same password", () => {
+        cy.get('input[name="password"]').type('12345678')
+        cy.get('input[name="confirm-password"]').type('12345678')
+        cy.get('[data-button="signup"]').click()
+        cy.get('[data-cy="alert"]').should('not.exist')
+
+        cy.url().should('eq', 'http://localhost:3000/todo')
+    })
+})

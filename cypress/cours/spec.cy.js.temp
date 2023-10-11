@@ -1,0 +1,28 @@
+describe('template spec', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000/todo')
+  })
+
+  it('test title exist', () => {
+    cy.get('[data-testid="heading"]')
+    .should("exist")
+    .should('have.text', 'TODOLIST')
+
+  })
+
+  it('Test adding task', () => {
+    cy.get('input[name="todo"]').type('Se faire courser par un dinosaure !')
+    cy.get('[data-button="add-task"]').click()
+    cy.get('[data-testid="todo-1"]').should('exist')
+
+    cy.get('input[type="text"]').type('Acheter un bras !')
+    cy.get('[data-button="add-task"]').click()
+    cy.get('[data-testid="todo-2"]').should('exist')
+
+    cy.get('[data-cy="todo-2"]').should('exist')
+    cy.get('[data-cy="todo-2"]').click()
+    cy.get('[data-testid="todo"]').should('not.include.text', 'Acheter un bras !')
+
+  })
+
+})

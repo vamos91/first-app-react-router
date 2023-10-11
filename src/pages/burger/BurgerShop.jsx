@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import Burger from '../components/Burger'
+import Burger from '../../components/burger/Burger'
+import {Button} from 'flowbite-react'
 
 
 const BurgerShop = () => {
@@ -23,10 +24,10 @@ const BurgerShop = () => {
     return (
         <>
             <h3>Vous avez commander: {chosenBurger}</h3>
-            <div><button onClick={() => addSauce('Mayo')}>Mayo</button><button onClick={() => deleteSauce('Mayo')}>Delete</button></div>
-            <div><button onClick={() => addSauce('Ketchup')}>Ketchup</button><button onClick={() => deleteSauce('Ketchup')}>Delete</button></div>
+            <div className='flex'><Button onClick={() => addSauce('Mayo')}>Mayo</Button><Button onClick={() => deleteSauce('Mayo')}>Delete</Button></div>
+            <div className='flex'><Button onClick={() => addSauce('Ketchup')}>Ketchup</Button><Button onClick={() => deleteSauce('Ketchup')}>Delete</Button></div>
             <h3>choisi ta sauce:{sauce.join(',')}</h3>
-            <div className='burger'>
+            <div className='flex justify-center items-center h-screen'>
                 {
                     burger.length > 0 && burger.map((item, i) => (
                         <Burger key={i} burgerName={item} handleClickParent={handleClick} />

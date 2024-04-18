@@ -1,0 +1,52 @@
+describe('Should redirect to todo page after signup', () => {
+
+    beforeEach(() => {
+        cy.visit('http://localhost:3000/signup')
+    })
+
+
+    it('Should display Signup', () => {
+        cy.get('[data-cy="heading"]').should('exist')
+    })
+
+    it('Should display alert', () => {
+        cy.get('[data-cy="alert"]').should('not.exist')
+
+        cy.get('input[role="email"]').type('tony@stark.fr')
+        cy.get('input[role="password"]').type('12345678')
+        cy.get('input[role="confirm-password"]').type('123')
+        cy.get('[data-cy="signup"]').click()
+
+        cy.get('[data-cy="alert"]').should('exist')
+        cy.get('[data-cy="alert"]').should('have.text', 'Info alert!type same password')
+
+    })
+
+    it('Should redirect to Todo page', () => {
+        cy.get('[data-cy="alert"]').should('not.exist')
+
+        cy.get('input[role="email"]').type('tony@stark.fr')
+        cy.get('input[role="password"]').type('12345678')
+        cy.get('input[role="confirm-password"]').type('12345678')
+        cy.get('[data-cy="signup"]').click()
+
+        cy.url().should('include', '/todo')
+    })
+
+    it('Should add 3 todos', () => {
+        cy.visit('http://localhost:3000/todo')
+        cy.get('[data-button="add-task"]').should('be.disabled')
+        cy.get('input[name="todo"]').type('Faire les courses')
+        cy.get('[data-button="add-task"]').should('not.be.disabled')
+        cy.get('[data-button="add-task"]').click()
+        cy.get('input[name="todo"]').type('Faire le controle technique')
+        cy.get('[data-button="add-task"]').click()
+        cy.get('input[name="todo"]').type("Chercher les gosses à l'école")
+        cy.get('[data-button="add-task"]').click()
+
+
+        
+    })
+
+
+})

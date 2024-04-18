@@ -24,7 +24,7 @@ const Burger = ({ burgerName, handleClickParent }) => {
                 <p className="font-normal text-gray-700 dark:text-gray-400">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, voluptatum!
                 </p>
-                <Button role="counter" onClick={() => handleClick()}>
+                <Button data-cy="click" onClick={() => handleClick()}>
                     <p>
                         Like {counter > 0 ? counter : ''}
                     </p>

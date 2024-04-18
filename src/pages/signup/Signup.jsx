@@ -12,7 +12,7 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [isPasswordNotOk, setIsPasswordNotOk] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmitForm = (e) => {
         e.preventDefault()
         if(password !== confirmPassword){
             setIsPasswordNotOk(true)
@@ -41,7 +41,7 @@ const Signup = () => {
                     </Alert>
                 )
             }
-            <form onSubmit={handleSubmit} className='flex justify-center items-center flex-col h-screen'>
+            <form onSubmit={handleSubmitForm} className='flex justify-center items-center flex-col h-screen'>
                 <h1 data-cy="heading">SIGNUP</h1>
                 <div className='w-1/4'>
                     <TextInput
@@ -71,7 +71,7 @@ const Signup = () => {
                         name="confirm-password"
                         placeholder='Confirm password'
                     />
-                    <Button data-button="signup" className='w-full' role="submit-signup" type="submit">Signup</Button>
+                    <Button data-cy="signup" data-button="signup" className='w-full' role="submit-signup" type="submit">Signup</Button>
                 </div>
             </form>
         </>

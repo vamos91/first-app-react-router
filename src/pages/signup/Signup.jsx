@@ -17,7 +17,7 @@ const Signup = () => {
         if(password !== confirmPassword){
             setIsPasswordNotOk(true)
         }else{
-            navigate('/todo')
+            navigate('/signin')
         }
     }
 

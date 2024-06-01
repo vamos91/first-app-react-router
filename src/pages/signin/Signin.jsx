@@ -7,7 +7,7 @@ const Signin = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
     const login = () => {
-        navigate('/dashboard')
+        navigate('/todo')
     }
     return (
         <div className='flex justify-center items-center flex-col h-screen'>
@@ -29,7 +29,7 @@ const Signin = () => {
                     role="password"
                     placeholder='Password'
                 />
-                <Button className='w-full' onClick={() => login()}>Signin</Button>
+                <Button cy-data="signin-button" className='w-full' onClick={() => login()}>Signin</Button>
             </div>
             
         </div>

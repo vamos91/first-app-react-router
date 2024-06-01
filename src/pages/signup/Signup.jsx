@@ -12,12 +12,31 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState('')
     const [isPasswordNotOk, setIsPasswordNotOk] = useState(false)
 
-    const handleSubmitForm = (e) => {
+    const handleSubmitForm = async (e) => {
         e.preventDefault()
         if(password !== confirmPassword){
             setIsPasswordNotOk(true)
         }else{
-            navigate('/signin')
+            const userData = await fetch('/auth/signup', {
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            })
+            console.log(userData)
+            if(userData.status === 200){
+                const userDataJson = await userData.json()
+                console.log(userDataJson)
+                navigate('/signin')
+            }else{
+                console.log('Something went wrong')
+                setIsPasswordNotOk(true)
+            }
+
         }
     }
 
@@ -35,7 +54,7 @@ const Signup = () => {
                                 <span className="font-medium">
                                     Info alert!
                                 </span>
-                                type same password
+                                Something went wrong
                             </p>
                         </span>
                     </Alert>

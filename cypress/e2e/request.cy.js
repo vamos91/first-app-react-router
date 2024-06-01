@@ -4,6 +4,7 @@ describe('Testing api jsonplaceholder', () => {
     // })
 
     it('Should have 100 posts', () => {
+        // eslint-disable-next-line no-undef
         cy.request('https://jsonplaceholder.typicode.com/posts')
         .then((response) => {
             expect(response.body).to.have.length(100)

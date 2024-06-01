@@ -18,7 +18,7 @@ describe('Should redirect to todo page after signup', () => {
         cy.get('[data-cy="signup"]').click()
 
         cy.get('[data-cy="alert"]').should('exist')
-        cy.get('[data-cy="alert"]').should('have.text', 'Info alert!type same password')
+        cy.get('[data-cy="alert"]').should('have.text', 'Info alert!Something went wrong')
 
     })
 

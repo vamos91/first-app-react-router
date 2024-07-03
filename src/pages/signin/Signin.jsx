@@ -6,7 +6,7 @@ import { HiInformationCircle } from 'react-icons/hi';
 const Signin = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [somwthingWrong, setSomethingWrong] = useState(false)
+    const [somethingWrong, setSomethingWrong] = useState(false)
     const [errorMessage, setErrorMessage] = useState('')
     const navigate = useNavigate()
     const login = async () => {
@@ -34,7 +34,7 @@ const Signin = () => {
     return (
         <div className='flex justify-center items-center flex-col h-screen'>
             {
-                somwthingWrong && (
+                somethingWrong && (
                     <Alert
                         color="failure"
                         icon={HiInformationCircle}

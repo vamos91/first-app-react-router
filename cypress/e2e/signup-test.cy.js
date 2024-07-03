@@ -1,3 +1,8 @@
+import { faker } from '@faker-js/faker';
+
+const email = faker.internet.email()
+const password = faker.internet.password({ length: 20 })
+
 describe('Testing signup feature', () => {
 
     beforeEach(() => {
@@ -13,9 +18,9 @@ describe('Testing signup feature', () => {
     })
 
     it('Should redirect to todo page', () => {
-        cy.get('input[name="email"]').type('tony@stark.fr')
-        cy.get('input[name="password"]').type('12345678')
-        cy.get('input[name="confirm-password"]').type('12345678')
+        cy.get('input[name="email"]').type(email)
+        cy.get('input[name="password"]').type(password)
+        cy.get('input[name="confirm-password"]').type(password)
         cy.get('[data-cy="signup"]').click()
         cy.contains('type same password').should('not.exist')
         cy.url().should('include', '/todo')  

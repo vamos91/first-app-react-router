@@ -1,9 +1,13 @@
+import { faker } from '@faker-js/faker';
+
+const email = faker.internet.email()
+const password = faker.internet.password({ length: 20 })
+
 describe('Should redirect to todo page after signup', () => {
 
     beforeEach(() => {
         cy.visit('http://localhost:3000/signup')
     })
-
 
     it('Should display Signup', () => {
         cy.get('[data-cy="heading"]').should('exist')
@@ -12,7 +16,7 @@ describe('Should redirect to todo page after signup', () => {
     it('Should display alert', () => {
         cy.get('[data-cy="alert"]').should('not.exist')
 
-        cy.get('input[role="email"]').type('tony@stark.fr')
+        cy.get('input[role="email"]').type(email)
         cy.get('input[role="password"]').type('12345678')
         cy.get('input[role="confirm-password"]').type('123')
         cy.get('[data-cy="signup"]').click()
@@ -25,12 +29,12 @@ describe('Should redirect to todo page after signup', () => {
     it('Should redirect to Todo page', () => {
         cy.get('[data-cy="alert"]').should('not.exist')
 
-        cy.get('input[role="email"]').type('tony@stark.fr')
-        cy.get('input[role="password"]').type('12345678')
-        cy.get('input[role="confirm-password"]').type('12345678')
+        cy.get('input[role="email"]').type(email)
+        cy.get('input[role="password"]').type(password)
+        cy.get('input[role="confirm-password"]').type(password)
         cy.get('[data-cy="signup"]').click()
 
-        cy.url().should('include', '/todo')
+        cy.url().should('include', '/signin')
     })
 
     it('Should add 3 todos', () => {

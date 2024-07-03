@@ -41,7 +41,7 @@ const TodoList = () => {
                         type="text"
                         onChange={(e) => isUserValue(e)}
                         value={todo}
-                        name="todo"
+                        role="todo"
                     />
                 </div>
                 <div> 

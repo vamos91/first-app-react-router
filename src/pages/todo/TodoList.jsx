@@ -64,7 +64,7 @@ const TodoList = () => {
                                 Status
                             </Table.HeadCell> 
                         </Table.Head>
-                        <Table.Body className="divide-y">
+                        <Table.Body data-list="todos" className="divide-y">
                             {
                                 todos.map((todo, item) => (
                                     <Todo id={item + 1} taskName={todo} handleParentClick={deleteTask} />

@@ -69,7 +69,7 @@ const Signin = () => {
                     role="password"
                     placeholder='Password'
                 />
-                <Button cy-data="signin-button" className='w-full' onClick={() => login()}>Signin</Button>
+                <Button data-cy="signin-button" className='w-full' onClick={() => login()}>Signin</Button>
             </div>
             
         </div>
